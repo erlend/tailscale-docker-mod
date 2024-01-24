@@ -3,6 +3,10 @@
 FLAGS=""
 
 # configure `tailscale up`
+if [ -v TAILSCALE_AUTHKEY_FILE ] && [ -f $TAILSCALE_AUTHKEY_FILE ]; then
+    TAILSCALE_AUTHKEY=$(cat $TAILSCALE_AUTHKEY_FILE)
+fi
+
 if ! [ -v TAILSCALE_AUTHKEY ]; then
     echo '[!] TAILSCALE_AUTHKEY is not defined, this will print a login URL to the screen'
 else
